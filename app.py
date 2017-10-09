@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json
 import requests
+from utils import wit_response
 
 app = Flask(__name__)
 
@@ -29,7 +30,14 @@ def handle_messages():
   print payload
   for sender, message in messaging_events(payload):
     print "Incoming from %s: %s" % (sender, message)
-    send_message(PAT, sender, message)
+
+    # Handle logic of responses
+    response = None
+    entities, values = wit_response(message)
+    if 'permission' in entities and 'object' in entities:
+        if 'rice cooker' in values:
+            response = "Sure, Go ahead!"
+    send_message(PAT, sender, response)
   return "ok"
 
 def messaging_events(payload):

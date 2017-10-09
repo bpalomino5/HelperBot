@@ -1,6 +1,6 @@
 from wit import Wit
 
-access_token = ""
+access_token = "EO6GJLEDDW7SJ3L6BJSMALGU5JA2UAQI"
 
 client = Wit(access_token = access_token)
 
@@ -10,10 +10,18 @@ def wit_response(message_text):
     value = None
 
     try:
-        entity = list(resp['entities'])[0]
-        value = resp['entities'][entity][0]['value']
+        entities = list(resp['entities'])
+        values = []
+        for entity in entities:
+            values.append(resp['entities'][entity][0]['value'])
     except:
         pass
-    return(entity, value)
+    return(entities, values)
 
-print wit_response("I want sports news")
+# entity, value =  wit_response("Can I use the rice cooker")
+# print entity
+# print value
+
+# if 'permission' in entity and 'object' in entity:
+#     if 'rice cooker' in value:
+#         print 'yes'
