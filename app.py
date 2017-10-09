@@ -36,7 +36,7 @@ def handle_messages():
     entities, values = wit_response(message)
     if 'permission' in entities and 'object' in entities:
         if 'rice cooker' in values:
-            response = "Sure, Go ahead!"
+            response = "Sure" + getName(PAT, sender) + ", Go ahead!"
     send_message(PAT, sender, response)
   return "ok"
 
@@ -66,6 +66,13 @@ def send_message(token, recipient, text):
     headers={'Content-type': 'application/json'})
   if r.status_code != requests.codes.ok:
     print r.text
+
+def getName(token, userID):
+    r = requests.get("https://graph.facebook.com/v2.6/"+userID+"?",
+    params={"access_token": token, "fields": "first_name"})
+    if r.status_code != requests.codes.ok:
+        print r.text
+    return r.json()['first_name']
 
 if __name__ == '__main__':
   app.run()

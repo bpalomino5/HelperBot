@@ -1,4 +1,5 @@
 from wit import Wit
+import requests
 
 access_token = "EO6GJLEDDW7SJ3L6BJSMALGU5JA2UAQI"
 
@@ -17,11 +18,3 @@ def wit_response(message_text):
     except:
         pass
     return(entities, values)
-
-# entity, value =  wit_response("Can I use the rice cooker")
-# print entity
-# print value
-
-# if 'permission' in entity and 'object' in entity:
-#     if 'rice cooker' in value:
-#         print 'yes'
