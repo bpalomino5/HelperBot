@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
-PAT = ''
+PAT = 'EAAMTnOQksA4BANQNFeRwIz7jJD1TZAE1UaN2F6KPEAerhyWTgpeALuCqk3eZCPoHBWWJNcYbdMcNZADZBBF3EiozqIeO490MkdaHSx1RcSc9dmzrb1nl7wZARNI8l310fud235AVN7iQ3nd6vrGfZBh0akLIQDbcaRHFAhQo0LDQZDZD'
 
 @app.route('/index/')
 def index():
