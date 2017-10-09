@@ -8,7 +8,7 @@ app = Flask(__name__)
 # by the Facebook App that will be created.
 PAT = ''
 
-@app.route('/')
+@app.route('/index/')
 def index():
     return "Hi I'm a chatbot"
 
