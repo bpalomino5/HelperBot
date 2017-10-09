@@ -36,7 +36,7 @@ def handle_messages():
     entities, values = wit_response(message)
     if 'permission' in entities and 'object' in entities:
         if 'rice cooker' in values:
-            response = "Sure" + getName(PAT, sender) + ", Go ahead!"
+            response = "Sure " + getName(PAT, sender) + ", Go ahead!"
     send_message(PAT, sender, response)
   return "ok"
 
