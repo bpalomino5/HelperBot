@@ -16,4 +16,4 @@ def wit_response(message_text):
         pass
     return(entity, value)
 
-print(wit_response("I want sports news"))
+print wit_response("I want sports news")
