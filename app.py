@@ -8,6 +8,10 @@ app = Flask(__name__)
 # by the Facebook App that will be created.
 PAT = ''
 
+@app.route('/')
+def index():
+    return "Hi I'm a chatbot"
+    
 @app.route('/', methods=['GET'])
 def handle_verification():
   print "Handling Verification."
