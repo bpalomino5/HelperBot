@@ -38,7 +38,9 @@ def handle_messages():
     try:
         response = None
         entities, values = wit_response(message)
-    
+        print "entities: %s " % entities        #DEBUG
+        print "values: %s " % values            #DEBUG
+
         if 'permission' in entities or 'object' in entities:               # Rice cooker query       
             if 'rice cooker' in values:
                 response = "Sure " + getName(PAT, sender) + ", go ahead"
@@ -52,7 +54,6 @@ def handle_messages():
         send_message(PAT, sender, response)
     except AttributeError as e:
         send_message(PAT, sender, "Sorry, I could not understand \U0001f61e")
-    
   return "ok"
 
 def messaging_events(payload):
