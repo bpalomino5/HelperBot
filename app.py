@@ -35,20 +35,24 @@ def handle_messages():
     print "Incoming from %s: %s" % (sender, message)
 
     # Handle logic of responses
-    response = None
-    entities, values = wit_response(message)
+    try:
+        response = None
+        entities, values = wit_response(message)
     
-    if 'permission' in entities or 'object' in entities:               # Rice cooker query       
-        if 'rice cooker' in values:
-            response = "Sure " + getName(PAT, sender) + ", go ahead"
-            send_message(PAT, BrandonID, "I let " + getName(PAT, sender) + " use the rice cooker.")
-    elif 'thanks' in entities and 'true' in values:                     # case thanks
-        response = "You're welcome"
-    elif 'greetings' in entities and 'true' in values:                  # case greeting
-        response = "Hi " + getName(PAT, sender) + "!"
-    else:
-        response = "Sorry, I could not understand."
-    send_message(PAT, sender, response)
+        if 'permission' in entities or 'object' in entities:               # Rice cooker query       
+            if 'rice cooker' in values:
+                response = "Sure " + getName(PAT, sender) + ", go ahead"
+                send_message(PAT, BrandonID, "I let " + getName(PAT, sender) + " use the rice cooker.")
+        elif 'thanks' in entities and 'true' in values:                     # case thanks
+            response = "You're welcome"
+        elif 'greetings' in entities and 'true' in values:                  # case greeting
+            response = "Hi " + getName(PAT, sender) + "!"
+        else:
+            response = "Sorry, I could not understand \U0001f61e"  # ends with sad face
+        send_message(PAT, sender, response)
+    except AttributeError as e:
+        send_message(PAT, sender, "Sorry, I could not understand \U0001f61e")
+    
   return "ok"
 
 def messaging_events(payload):
