@@ -18,3 +18,18 @@ def wit_response(message_text):
     except:
         pass
     return(entities, values)
+
+# response = "Sorry, I could not understand \U0001f61e"  # base case
+# entities, values = wit_response("rice cooker?")
+# print "entities: %s " % entities        #DEBUG
+# print "values: %s " % values            #DEBUG
+
+# if 'permission' in entities or 'object' in entities:               # Rice cooker query       
+#     if 'rice cooker' in values:
+#         response = "Sure " + getName(PAT, sender) + ", go ahead"
+#         send_message(PAT, BrandonID, "I let " + getName(PAT, sender) + " use the rice cooker.")
+# if 'thanks' in entities and 'true' in values:                     # case thanks
+#     response = "You're welcome"
+# if 'greetings' in entities and 'true' in values:                  # case greeting
+#     response = "Hi " + getName(PAT, sender) + "!"
+# print response

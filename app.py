@@ -35,25 +35,20 @@ def handle_messages():
     print "Incoming from %s: %s" % (sender, message)
 
     # Handle logic of responses
-    try:
-        response = None
-        entities, values = wit_response(message)
-        print "entities: %s " % entities        #DEBUG
-        print "values: %s " % values            #DEBUG
+    response = "Sorry, I could not understand \U0001f61e"  # base case
+    entities, values = wit_response(message)
+    print "entities: %s " % entities        #DEBUG
+    print "values: %s " % values            #DEBUG
 
-        if 'permission' in entities or 'object' in entities:               # Rice cooker query       
-            if 'rice cooker' in values:
-                response = "Sure " + getName(PAT, sender) + ", go ahead"
-                send_message(PAT, BrandonID, "I let " + getName(PAT, sender) + " use the rice cooker.")
-        if 'thanks' in entities and 'true' in values:                     # case thanks
-            response = "You're welcome"
-        if 'greetings' in entities and 'true' in values:                  # case greeting
-            response = "Hi " + getName(PAT, sender) + "!"
-        else:
-            response = "Sorry, I could not understand \U0001f61e"  # ends with sad face
-        send_message(PAT, sender, response)
-    except AttributeError as e:
-        send_message(PAT, sender, "Sorry, I could not understand \U0001f61e")
+    if 'permission' in entities or 'object' in entities:               # Rice cooker query       
+        if 'rice cooker' in values:
+            response = "Sure " + getName(PAT, sender) + ", go ahead"
+            send_message(PAT, BrandonID, "I let " + getName(PAT, sender) + " use the rice cooker.")
+    if 'thanks' in entities and 'true' in values:                     # case thanks
+        response = "You're welcome"
+    if 'greetings' in entities and 'true' in values:                  # case greeting
+        response = "Hi " + getName(PAT, sender) + "!"
+    send_message(PAT, sender, response)
   return "ok"
 
 def messaging_events(payload):
