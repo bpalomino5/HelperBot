@@ -9,6 +9,8 @@ app = Flask(__name__)
 # by the Facebook App that will be created.
 PAT = 'EAAMTnOQksA4BANQNFeRwIz7jJD1TZAE1UaN2F6KPEAerhyWTgpeALuCqk3eZCPoHBWWJNcYbdMcNZADZBBF3EiozqIeO490MkdaHSx1RcSc9dmzrb1nl7wZARNI8l310fud235AVN7iQ3nd6vrGfZBh0akLIQDbcaRHFAhQo0LDQZDZD'
 BrandonID = '1444490405670524'
+ElaineID = '1624018000992423'
+CjID = '838987136226409'
 
 @app.route('/index/')
 def index():
@@ -36,7 +38,7 @@ def handle_messages():
     response = None
     entities, values = wit_response(message)
     
-    if 'permission' in entities and 'object' in entities:               # Rice cooker query       
+    if 'permission' in entities or 'object' in entities:               # Rice cooker query       
         if 'rice cooker' in values:
             response = "Sure " + getName(PAT, sender) + ", go ahead"
             send_message(PAT, BrandonID, "I let " + getName(PAT, sender) + " use the rice cooker.")
@@ -44,7 +46,8 @@ def handle_messages():
         response = "You're welcome"
     elif 'greetings' in entities and 'true' in values:                  # case greeting
         response = "Hi " + getName(PAT, sender) + "!"
-
+    else:
+        response = "Sorry, I could not understand."
     send_message(PAT, sender, response)
   return "ok"
 
