@@ -45,9 +45,9 @@ def handle_messages():
             if 'rice cooker' in values:
                 response = "Sure " + getName(PAT, sender) + ", go ahead"
                 send_message(PAT, BrandonID, "I let " + getName(PAT, sender) + " use the rice cooker.")
-        elif 'thanks' in entities and 'true' in values:                     # case thanks
+        if 'thanks' in entities and 'true' in values:                     # case thanks
             response = "You're welcome"
-        elif 'greetings' in entities and 'true' in values:                  # case greeting
+        if 'greetings' in entities and 'true' in values:                  # case greeting
             response = "Hi " + getName(PAT, sender) + "!"
         else:
             response = "Sorry, I could not understand \U0001f61e"  # ends with sad face

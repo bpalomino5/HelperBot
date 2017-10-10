@@ -18,8 +18,3 @@ def wit_response(message_text):
     except:
         pass
     return(entities, values)
-
-
-# entities, values = wit_response("Hi")
-# print entities
-# print values
