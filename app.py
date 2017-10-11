@@ -61,8 +61,12 @@ def handle_messages():
             recipientID = BryanID
         elif user == 'CJ':
             recipientID = CjID
+        elif user == 'Brandon':
+            recipientID = BrandonID
         else:
             print 'this error needs be handled!'
+            send_message(PAT, sender, "Sorry, I cannot do that yet!")
+            break
         response = getName(PAT, recipientID) + ", " + getName(PAT, sender) + " says " + message
         send_message(PAT, recipientID, response)
         response = "Okay!"
