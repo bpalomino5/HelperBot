@@ -51,6 +51,21 @@ def handle_messages():
         response = "You're welcome"
     if 'greetings' in entities and 'true' in values:                  # case greeting
         response = "Hi " + getName(PAT, sender) + "!"
+    if 'command' in entities and 'user' in entities and 'message_body' in entities: # case command tell with user
+        message = values[entities.index('message_body')]   # gathering message_body with minimal error
+        user = values[entities.index('user')]   # getting user value
+        recipientID = None
+        if user == 'Elaine':
+            recipientID = ElaineID
+        elif user == 'Bryan':
+            recipientID = BryanID
+        elif user == 'CJ':
+            recipientID = CjID
+        else:
+            print 'this error needs be handled!'
+        response = getName(PAT, recipientID) + ", " + getName(PAT, sender) + " says " + message
+        send_message(PAT, recipientID, response)
+        response = "Okay!"
     send_message(PAT, sender, response)
   return "ok"
 
