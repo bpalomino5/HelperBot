@@ -43,7 +43,7 @@ def handle_messages():
     print "entities: %s " % entities        #DEBUG
     print "values: %s " % values            #DEBUG
 
-    if 'permission' in entities or 'object' in entities:               # Rice cooker query       
+    if 'permission' in entities and 'object' in entities:               # Rice cooker query       
         if 'rice cooker' in values:
             response = "Sure " + getName(PAT, sender) + ", go ahead"
             send_message(PAT, BrandonID, "I let " + getName(PAT, sender) + " use the rice cooker.")
