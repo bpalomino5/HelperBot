@@ -21,7 +21,7 @@ def wit_response(message_text):
 
 """
 response = "Sorry, I could not understand"  # base case
-entities, values = wit_response("tell elaine that i love you!")
+entities, values = wit_response("notify elaine that i love you!")
 print "entities: %s " % entities        #DEBUG
 print "values: %s " % values            #DEBUG
 
@@ -34,17 +34,22 @@ if 'thanks' in entities and 'true' in values:                     # case thanks
 if 'greetings' in entities and 'true' in values:                  # case greeting
     response = "Hi " + getName(PAT, sender) + "!"
 if 'command' in entities and 'user' in entities and 'message_body' in entities: # case command tell with user
+    command = values[entities.index('command')]
     message = values[entities.index('message_body')]   # gathering message_body with minimal error
     user = values[entities.index('user')]   # getting user value
     senderID = None
     if user == 'Elaine':
-        senderID = ElaineID
+        senderID = "ElaineID"
     elif user == 'Bryan':
-        senderID = BryanID
+        senderID = "BryanID"
     elif user == 'CJ':
-        senderID = CjID
+        senderID = "CjID"
     else:
         print 'this error needs be handled!'
-    response = "Elaine, " + "Brandon says " + message
+
+    if command == 'notify':
+        response = "Elaine, " + message
+    else:
+        response = "Elaine, " + "Brandon says " + message
 print response
 """

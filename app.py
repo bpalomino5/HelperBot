@@ -52,6 +52,7 @@ def handle_messages():
     if 'greetings' in entities and 'true' in values:                  # case greeting
         response = "Hi " + getName(PAT, sender) + "!"
     if 'command' in entities and 'user' in entities and 'message_body' in entities: # case command tell with user
+        command = values[entities.index('command')]
         message = values[entities.index('message_body')]   # gathering message_body with minimal error
         user = values[entities.index('user')]   # getting user value
         recipientID = None
@@ -67,8 +68,13 @@ def handle_messages():
             print 'this error needs be handled!'
             send_message(PAT, sender, "Sorry, I cannot do that yet!")
             break
-        response = getName(PAT, recipientID) + ", " + getName(PAT, sender) + " says " + message
-        send_message(PAT, recipientID, response)
+
+        if command == 'notify':
+            response = getName(PAT, recipientID) + ", " + message
+            send_message(PAT, recipientID, response)
+        else: #tell
+            response = getName(PAT, recipientID) + ", " + getName(PAT, sender) + " says " + message
+            send_message(PAT, recipientID, response)
         response = "Okay!"
     send_message(PAT, sender, response)
   return "ok"
